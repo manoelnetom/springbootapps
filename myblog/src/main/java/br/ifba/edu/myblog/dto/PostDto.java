@@ -17,7 +17,6 @@ public class PostDto {
 	
 	
 	public PostDto(Post post) {
-		super();
 		this.id = post.getId();
 		this.titulo = post.getTitulo();
 		this.texto = post.getTexto();

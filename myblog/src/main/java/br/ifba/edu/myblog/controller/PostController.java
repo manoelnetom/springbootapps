@@ -18,9 +18,7 @@ public class PostController {
 	@RequestMapping("/posts")
 	public List<PostDto> listar(String titulo){
 		
-		return PostDto.converte(repository.findByTitulo(titulo));
-		//return PostDto.converte(repository.findByTituloContaining(titulo));
-		//return PostDto.converte(repository.findByTitulo(titulo));
-		//return PostDto.converte(repository.findAll());
+		return PostDto.converte(repository.findAll());
+		
 	}
 }

@@ -1,11 +1,21 @@
 package br.ifba.edu.myblog.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.ifba.edu.myblog.model.Usuario;
 
 public class UsuarioForm {
 	
+	
 	private Long id;
+	
+	@NotNull(message = "O nome não pode ser nulo") 
+	@NotBlank(message = "O nome não pode ser vazio")
 	private String nome;
+	@Length(min=5,message = "O login tem min de 5 caractres")
 	private String login;
 	private String senha;
 	

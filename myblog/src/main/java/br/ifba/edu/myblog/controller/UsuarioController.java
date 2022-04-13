@@ -3,8 +3,10 @@ package br.ifba.edu.myblog.controller;
 import java.net.URI;
 import java.util.List;
 
-import org.hibernate.bytecode.internal.bytebuddy.BulkAccessorException;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,11 +35,12 @@ public class UsuarioController {
 	
 	
 	@PostMapping
-	public ResponseEntity<Usuario> cadastrar(@RequestBody UsuarioForm usuarioForm, UriComponentsBuilder builder) {
+	public ResponseEntity<Usuario> cadastrar(@RequestBody @Valid UsuarioForm usuarioForm, UriComponentsBuilder builder) {
 		Usuario usuario= usuarioForm.converter();
 		repository.save(usuario);
-		URI uri = builder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
-		return ResponseEntity.created(uri).body(usuario);
+		//URI uri = builder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
+		return new ResponseEntity<Usuario>(usuario,HttpStatus.CREATED);
+		//return ResponseEntity.created(uri).body(usuario);
 	}
 	
 	@GetMapping("/{id}")

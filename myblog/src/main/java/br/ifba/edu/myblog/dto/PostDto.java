@@ -3,6 +3,8 @@ package br.ifba.edu.myblog.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import br.ifba.edu.myblog.model.Categoria;
 import br.ifba.edu.myblog.model.Post;
 
@@ -23,13 +25,13 @@ public class PostDto {
 		this.categoria = post.getCategoria();
 	}
 	
-	public static List<PostDto> converte(List<Post> lista){
+	public static Page<PostDto> converte(Page<Post> page){
 		
 		//List<PostDto> listaDto=new ArrayList<>();
 		//for (int i=0; i<lista.size();i++) {
 		//	listaDto.add(new PostDto(lista.get(i)));
 		//}
-		return lista.stream().map(PostDto::new).collect(Collectors.toList());
+		return page.map(PostDto::new);
 	
 	
 	}

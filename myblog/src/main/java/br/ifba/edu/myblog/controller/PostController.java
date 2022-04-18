@@ -5,6 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ifba.edu.myblog.dto.PostDto;
@@ -32,13 +36,15 @@ public class PostController {
 	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
-	public List<PostDto> listar(String titulo){
+	public Page<PostDto> listar(@RequestParam(required = false) String titulo, int pagina, int qtd){
+		
+		Pageable pageable = PageRequest.of(pagina, qtd);
 		
 		if((titulo!=null) && (!titulo.equals(""))) {
-			return PostDto.converte(repository.findByTitulo(titulo));
+			return PostDto.converte(repository.findByTitulo(titulo,pageable));
 		}
 		
-		return PostDto.converte(repository.findAll());	
+		return PostDto.converte(repository.findAll(pageable));	
 	}
 	
 	@PostMapping

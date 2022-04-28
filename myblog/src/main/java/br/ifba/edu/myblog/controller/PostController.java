@@ -1,9 +1,6 @@
 package br.ifba.edu.myblog.controller;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.ifba.edu.myblog.dto.PostDto;
 import br.ifba.edu.myblog.dto.PostForm;
 import br.ifba.edu.myblog.model.Post;
@@ -36,9 +32,9 @@ public class PostController {
 	private UsuarioRepository usuarioRepository;
 	
 	@GetMapping
-	public Page<PostDto> listar(@RequestParam(required = false) String titulo, int pagina, int qtd){
+	public Page<PostDto> listar(@RequestParam(required = false) String titulo, Pageable pageable){
 		
-		Pageable pageable = PageRequest.of(pagina, qtd);
+		//Pageable pageable = PageRequest.of(pagina, qtd);
 		
 		if((titulo!=null) && (!titulo.equals(""))) {
 			return PostDto.converte(repository.findByTitulo(titulo,pageable));

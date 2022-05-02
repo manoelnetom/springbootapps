@@ -23,7 +23,7 @@ public class AutenticationService implements UserDetailsService {
 		if(usuario.isPresent()) {
 			return usuario.get();
 		}
-		throw new UsernameNotFoundException("Usuario não encontrado");
+		throw new UsernameNotFoundException("Usuário não encontrado");
 	}
 
 }

@@ -28,8 +28,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		//.antMatchers(HttpMethod.GET,"/filmes").permitAll()
-		//.antMatchers(HttpMethod.GET,"/filmes/*").permitAll()
+		.antMatchers(HttpMethod.GET,"/filmes").permitAll()
+		.antMatchers(HttpMethod.GET,"/filmes/*").permitAll()
 		.anyRequest().authenticated()
 		.and().formLogin();
 		

@@ -11,7 +11,7 @@ import br.com.apifilmes.dto.FilmeDto;
 import br.com.apifilmes.model.Filme;
 import br.com.apifilmes.repository.FilmeRepository;
 
-@Service
+@Service 
 public class FilmeService {
 
 	@Autowired

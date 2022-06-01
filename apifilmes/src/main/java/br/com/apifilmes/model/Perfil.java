@@ -5,10 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.security.core.GrantedAuthority;
 
 @Entity(name = "perfis")
-public class Perfil implements GrantedAuthority{
+public class Perfil {
 	/**
 	 * 
 	 */
@@ -36,7 +35,7 @@ public class Perfil implements GrantedAuthority{
 		this.nome = nome;
 	}
 
-	@Override
+	
 	public String getAuthority() {
 		// TODO Auto-generated method stub
 		return this.nome;

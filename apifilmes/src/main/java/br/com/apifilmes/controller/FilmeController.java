@@ -24,7 +24,7 @@ import br.com.apifilmes.service.FilmeService;
 
 @RestController
 @RequestMapping("/filmes")
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FilmeController {
 	
 	@Autowired
